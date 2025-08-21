@@ -16,7 +16,7 @@
                 <label>Ingresa el plazo:</label>
                 <input type="number" name="plazo" placeholder="Editar el plazo" value="{{cliente[4]}}" required><br/>
                 <label>Ingresa fecha de otorgamiento:</label>
-                <input type="text" name="fecha_otorgamiento" pattern="\d{4}-/\d{1,2}-/\d{1,2}*" placeholder="Editar la fecha de otorgamiento" value="{{cliente[5]}}" required><br/>
+                <input type="text" name="fecha_otorgamiento" pattern="\d{4}-\d{1,2}-\d{1,2}" title="Debe contener el formato YYYY-MM-DD" placeholder="Editar la fecha de otorgamiento" value="{{cliente[5]}}" required><br/>
                 <input type = "submit" value = "submit"/><br/>
             {%endfor%}
 
