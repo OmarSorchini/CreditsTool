@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Python-Flask credits tool </title>
+    </head>
+    <body>
+        <form method="POST">
+            <label>Ingresa nombre:</label>
+            <input type="text" name="cliente" placeholder="Ingresa tu nombre" required><br/>
+            <label>Ingresa monto:</label>
+            <input type="number" name="monto" pattern="[0-9]*[.,]?[0-9]*" step="0.01" placeholder="Ingresa el monto" required><br/>
+            <label>Ingresa tasa de interés:</label>
+            <input type="number" name="tasa_interes" pattern="[0-9]*[.,]?[0-9]*" step="0.01" placeholder="Ingresa la tasa de interés" required><br/>
+            <label>Ingresa el plazo:</label>
+            <input type="number" name="plazo" placeholder="Ingresa el plazo" required><br/>
+            <label>Ingresa fecha de otorgamiento:</label>
+            <input type="text" name="fecha_otorgamiento" pattern="\d{4}-/\d{1,2}-/\d{1,2}*" placeholder="Ingresa la fecha de otorgamiento" required><br/>
+            <input type = "submit" value = "submit"/><br/>
+        </form>
+    </body>
+</html>

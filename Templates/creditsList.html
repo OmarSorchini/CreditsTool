@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Python-Flask credits tool </title>
+    </head>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+    <body>
+        <table style="width:100%">
+            <tr>
+              <th>Cliente</th>
+              <th>Monto</th>
+              <th>Tasa de interés</th>
+              <th>Plazo</th>
+              <th>Fecha de otorgamiento</th>
+            </tr>
+            {%for cliente in data%}
+               <tr>
+                 <td>{{cliente[1]}}</td>
+                 <td>{{cliente[2]}}</td>
+                 <td>{{cliente[3]}}</td>
+                 <td>{{cliente[4]}}</td>
+                 <td>{{cliente[5]}}</td>
+                 <td><button class="btn" type="submit" name="edit" onclick="window.location.href='{{ url_for('creditsEdit', idCred = cliente[0]) }}';">Editar crédito</button></td>
+                 <td><button class="btn" type="submit" name="delete" onclick="window.location.href='{{ url_for('creditsDelete', idCred = cliente[0]) }}';">Eliminar crédito</button></td>
+                </tr>
+            {%endfor%}
+          </table>          
+    </body>
+</html>

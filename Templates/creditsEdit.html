@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Python-Flask credits tool </title>
+    </head>
+    <body>
+        <form method="POST">
+
+            {%for cliente in data%}
+                <label>Ingresa nombre:</label>
+                <input type="text" name="cliente" placeholder="Edita el nombre" value="{{cliente[1]}}" required><br/>
+                <label>Ingresa monto:</label>
+                <input type="number" name="monto" pattern="[0-9]*[.,]?[0-9]*" step="0.01" placeholder="Editar el monto" value="{{cliente[2]}}" required><br/>
+                <label>Ingresa tasa de interés:</label>
+                <input type="number" name="tasa_interes" pattern="[0-9]*[.,]?[0-9]*" step="0.01" placeholder="Editar la tasa de interés" value="{{cliente[3]}}" required><br/>
+                <label>Ingresa el plazo:</label>
+                <input type="number" name="plazo" placeholder="Editar el plazo" value="{{cliente[4]}}" required><br/>
+                <label>Ingresa fecha de otorgamiento:</label>
+                <input type="text" name="fecha_otorgamiento" pattern="\d{4}-/\d{1,2}-/\d{1,2}*" placeholder="Editar la fecha de otorgamiento" value="{{cliente[5]}}" required><br/>
+                <input type = "submit" value = "submit"/><br/>
+            {%endfor%}
+
+        </form>
+    </body>
+</html>
