@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import sqlite3, pandas, os, base64
 from matplotlib.figure import Figure
 from io import BytesIO
+import matplotlib.ticker as tck
 
 app = Flask(__name__)
 
@@ -17,7 +18,7 @@ def index():
 connect = sqlite3.connect('database.db')
 
 
-    # creditos table creation
+    # creditos table creation (testing purposes)
 
 """
 connect.execute(
@@ -118,37 +119,24 @@ def creditsDashboard():
 
     connect = sqlite3.connect('database.db')
 
-    query = "SELECT count(cliente) as Creditos_Activos, cliente as Cliente, monto as Monto FROM creditos"
+    query = "SELECT count(cliente) as Creditos_Activos, cliente as Cliente, monto as Monto FROM creditos \
+    GROUP BY cliente ORDER BY count(cliente) DESC"
 
     data = pandas.read_sql(query, connect)
+
+    print(data)
 
     # Generate the figure **without using pyplot**.
     fig = Figure()
     ax = fig.subplots()
     ax.bar(data.Cliente, data.Creditos_Activos)
-    # Save it to a temporary buffer.
-    #buf = BytesIO()
-    #fig.savefig(buf, format="png")
+    
+    ax.yaxis.set_major_locator(tck.MultipleLocator())
+    
     path = os.path.join('static', 'images', 'plot.png')
     fig.savefig(path)
-    # Embed the result in the html output.
-    #dataFig = base64.b64encode(buf.getbuffer()).decode("ascii")
-    #return f"<img src='dataFig:image/png;base64,{dataFig}'/>"
 
     return render_template("creditsGraph.html", pathImage = path)
-
-
-"""
-    plt.bar(data.Cliente, data.Creditos_Activos)
-
-    print(os.getcwd() + '\plot.png')
-
-    plt.savefig(os.path.join('static', 'images', 'plot.png'))
-
-    #plt.show()
-
-    return render_template("creditsGraph.html")
-"""
 
 if __name__ == '__main__':
     app.run(debug=True)
