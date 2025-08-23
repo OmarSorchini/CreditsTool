@@ -1,25 +1,125 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Python-Flask credits tool </title>
-    </head>
-    <body>
-        <form method="POST">
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edición</title>
+  <!-- Bootstrap CSS -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet">
 
-            {%for cliente in data%}
-                <label>Ingresa nombre:</label>
-                <input type="text" name="cliente" placeholder="Edita el nombre" value="{{cliente[1]}}" required><br/>
-                <label>Ingresa monto:</label>
-                <input type="number" name="monto" pattern="[0-9]*[.,]?[0-9]*" step="0.01" placeholder="Editar el monto" value="{{cliente[2]}}" required><br/>
-                <label>Ingresa tasa de interés:</label>
-                <input type="number" name="tasa_interes" pattern="[0-9]*[.,]?[0-9]*" step="0.01" placeholder="Editar la tasa de interés" value="{{cliente[3]}}" required><br/>
-                <label>Ingresa el plazo:</label>
-                <input type="number" name="plazo" placeholder="Editar el plazo" value="{{cliente[4]}}" required><br/>
-                <label>Ingresa fecha de otorgamiento:</label>
-                <input type="text" name="fecha_otorgamiento" pattern="\d{4}-\d{1,2}-\d{1,2}" title="Debe contener el formato YYYY-MM-DD" placeholder="Editar la fecha de otorgamiento" value="{{cliente[5]}}" required><br/>
-                <input type = "submit" value = "submit"/><br/>
-            {%endfor%}
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #001f3f, #003366, #002244);
+      position: relative;
+      overflow: hidden;
+    }
 
-        </form>
-    </body>
+    /* Figuras decorativas */
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    body::before {
+      width: 300px;
+      height: 300px;
+      background: red;
+      top: -100px;
+      left: -100px;
+    }
+
+    body::after {
+      width: 400px;
+      height: 400px;
+      background: white;
+      bottom: -150px;
+      right: -150px;
+    }
+
+    .circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: navy;
+      top: 20%;
+      right: 20%;
+      opacity: 0.5;
+    }
+
+    .form-container {
+      position: relative;
+      z-index: 1;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.3);
+      padding: 2rem;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .form-container h2 {
+      color: #001f3f;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-custom {
+      background-color: #001f3f;
+      color: white;
+    }
+
+    .btn-custom:hover {
+      background-color: #ff0000;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="circle"></div>    
+
+  <div class="form-container">
+    <h2 class="text-center">Editar crédito</h2>
+
+    <form method="POST">
+      {%for cliente in data%}
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="cliente" class="form-control" placeholder="Editar nombre" value="{{cliente[1]}}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Monto</label>
+            <input type="number" name="monto" pattern="[0-9]*[.,]?[0-9]*" step="0.01" class="form-control"  placeholder="Editar monto" value="{{cliente[2]}}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tasa de interés</label>
+            <input type="number" name="tasa_interes" pattern="[0-9]*[.,]?[0-9]*" step="0.01" class="form-control"  placeholder="Editar tasa de interés" value="{{cliente[3]}}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Plazo</label>
+            <input type="number" name="plazo" class="form-control"  placeholder="Editar plazo" value="{{cliente[4]}}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fecha de otorgamiento</label>
+            <input type="text" name="fecha_otorgamiento" pattern="\d{4}-\d{1,2}-\d{1,2}" title="Debe contener el formato YYYY-MM-DD" class="form-control"  placeholder="Editar fecha de otorgamiento" value="{{cliente[5]}}" required>
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Editar</button>
+      {%endfor%}
+    </form>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+  </script>
+</body>
 </html>

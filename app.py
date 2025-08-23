@@ -110,7 +110,9 @@ def creditsDelete(idCred):
             WHERE id = ?",[(idCred)])
             clientes.commit()
 
-        return render_template("index.html")
+        return creditsList()
+
+        #return render_template("index.html")
 
 @app.route('/creditsDashboard', methods=['GET', 'POST'])
 def creditsDashboard():
@@ -129,12 +131,12 @@ def creditsDashboard():
     # Generate the figure **without using pyplot**.
     fig = Figure()
     ax = fig.subplots()
-    ax.bar(data.Cliente, data.Creditos_Activos)
+    ax.barh(data.Cliente, data.Creditos_Activos)
     
-    ax.yaxis.set_major_locator(tck.MultipleLocator())
+    ax.xaxis.set_major_locator(tck.MultipleLocator())
     
     path = os.path.join('static', 'images', 'plot.png')
-    fig.savefig(path)
+    fig.savefig(path, bbox_inches = 'tight')
 
     return render_template("creditsGraph.html", pathImage = path)
 
