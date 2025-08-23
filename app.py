@@ -85,7 +85,7 @@ def creditsEdit(idCred):
             SET cliente = ?, monto = ?, tasa_interes = ?, plazo = ?, fecha_otorgamiento = ? \
             WHERE id = ?",(cliente, monto, tasa, plazo, fecha, idCred))
             clientes.commit()
-        return render_template("index.html")
+        return creditsList()
     else:
         connect = sqlite3.connect('database.db')
         cursor = connect.cursor()
